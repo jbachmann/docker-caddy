@@ -13,5 +13,5 @@ if [ ! -f /var/www/index.html ] && [ ! -f /.index_created ]; then
   touch /.index_created
 fi
 
-echo "Executing: /usr/bin/caddy $args"
-/usr/bin/caddy $args
+echo "Executing: /usr/local/bin/caddy $args"
+/usr/local/bin/caddy $args
