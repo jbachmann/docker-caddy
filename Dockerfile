@@ -3,12 +3,11 @@ LABEL maintainer "Carl Mercier <foss@carlmercier.com>"
 LABEL caddy_version="0.10.10" architecture="amd64"
 
 ARG plugins=dyndns,http.authz,http.cache,http.cgi,http.cors,http.expires,http.filemanager,http.filter,http.forwardproxy,http.git,http.hugo,http.ipfilter,http.jekyll,http.jwt,http.locale,http.login,http.nobots,http.proxyprotocol,http.ratelimit,http.realip,http.reauth,http.upload
-ARG dns=tls.dns.azure,tls.dns.cloudflare,tls.dns.digitalocean,tls.dns.dnsimple,tls.dns.dyn,tls.dns.googlecloud,tls.dns.linode,tls.dns.namecheap,tls.dns.rackspace,tls.dns.rfc2136,tls.dns.route53,tls.dns.vultr
+ARG dns=tls.dns.cloudflare,tls.dns.namecheap,tls.dns.rfc2136
 
 RUN apk add --no-cache openssh-client git tar curl ca-certificates bash && update-ca-certificates
 
-
-RUN curl https://getcaddy.com | /bin/bash -s personal ${plugins},${dns}
+RUN curl --silent https://getcaddy.com | /bin/bash -s personal $plugins,$dns
 
 RUN mkdir -p /opt/assets
 
